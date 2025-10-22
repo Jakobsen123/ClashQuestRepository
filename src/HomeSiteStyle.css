@@ -70,3 +70,41 @@ body::before {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.AboutUsContactUs {
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    color: rgb(255, 255, 255);
+    margin-top: 170px;
+    margin-left: 7%;
+    margin-right: 7%;
+    
+}
+
+.AboutUs {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 600px;
+   
+}
+
+
+.ContactUs {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 600px;
+
+}
+
+#Email {
+    color: gold;
+    margin-top: -10px;
+}
+
+.Footer {
+    color: white;
+    margin-top: 5%;
+}
