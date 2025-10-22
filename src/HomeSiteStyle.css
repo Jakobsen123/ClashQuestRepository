@@ -6,6 +6,7 @@
 
 body {
     font-family: ClashFont;
+    background-color: rgb(40, 40, 40);
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -45,6 +46,7 @@ h1,h2,h3,h4,h5,h6 {
     background-color: rgb(41, 105, 255);
     border-radius: 10px;
     cursor: pointer;
+    border-width: 4px;
 }
 
 #CQLogo {
