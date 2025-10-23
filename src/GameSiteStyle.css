@@ -53,5 +53,5 @@ h1 {
 
 h1:hover {
     scale: 1.05;
-    box-shadow: 0 0 1rem rgb(235, 201, 90);
+    box-shadow: 0 0 2rem rgb(240, 209, 108);
 }
