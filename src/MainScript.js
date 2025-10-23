@@ -53,27 +53,45 @@ const cards = {
     'Skeleton King': { rarity: rarities[4], hint: 'A Champion that summons skeletons upon death.', img: `${imgs}/skeleton-king.png` },
 };
 
-function getRandomCard(img,card) {
-    const Keys = Object.keys(cards);
-    const RandIt = Math.floor(Math.random() * Keys.length);
-    card = cards[Keys[RandIt]];
-    img.src = card.img;
-}
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
     if (window.location.pathname.endsWith('GameSite.html')) {
-        let card = null
+        let Card = null
 
         const BlurImg = document.querySelector('#BlurImg');
         const GuessInput = document.querySelector('#GuessInput');
         const HintBtn = document.querySelector('#HintBtn');
         const HintArea = document.querySelector('#HintArea');
-        getRandomCard(BlurImg,card);
-        GuessInput.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter' && GuessInput.value.toLowerCase() == card) {
-                console.log('Correct!');
+
+        const maxBlur = 20
+        let currentblur = 20
+
+        const Keys = Object.keys(cards);
+        const RandIt = Math.floor(Math.random() * Keys.length);
+        const cardname = Keys[RandIt];
+        Card = cards[Keys[RandIt]];
+        BlurImg.src = Card.img;
+        GuessInput.addEventListener('keyup', (event) => {
+            if (event.key == 'Enter') {
+                const gues = GuessInput.value.toLowerCase()
+                if (gues == cardname.toLowerCase()) {
+                    console.log('Correct!');
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                }
+                else {
+                    console.log('incorrect')
+                    BlurImg.style.filter = `blur(${currentblur - maxBlur / MaxTries}px)`
+                    currentblur -= 5
+                }
+                GuessInput.value = ''
             }
         })
+        HintBtn.addEventListener('click', () => {
+            HintArea.innerText = `HINT: ${Card.hint}`
+        })
     }
-});
+})
