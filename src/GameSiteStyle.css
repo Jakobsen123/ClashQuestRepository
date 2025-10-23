@@ -48,4 +48,10 @@ h1 {
     border-style: ridge;
     border-color: rgb(217, 188, 0);
     border-width: 0.5rem;
+    transition: 0.3s;
+}
+
+h1:hover {
+    scale: 1.05;
+    box-shadow: 0 0 1rem rgb(235, 201, 90);
 }
