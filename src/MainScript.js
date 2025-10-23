@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const maxBlur = 20
         let currentblur = 20
+        let attempt = 3
 
         const Keys = Object.keys(cards);
         const RandIt = Math.floor(Math.random() * Keys.length);
@@ -78,6 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const gues = GuessInput.value.toLowerCase()
                 if (gues == cardname.toLowerCase()) {
                     console.log('Correct!');
+                    HintArea.innerText = 'Correct!'
+                    HintArea.style.color = 'Green'
                     setTimeout(() => {
                         window.location.reload();
                     }, 1000);
@@ -85,7 +88,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 else {
                     console.log('incorrect')
                     BlurImg.style.filter = `blur(${currentblur - maxBlur / MaxTries}px)`
+                    attempt -= 1
                     currentblur -= 5
+                    if (attempt == 0) {
+                        HintArea.style.color = 'Red'
+                        HintArea.innerText = `You failed! Correct was ${cardname}`
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1000);
+                    }
                 }
                 GuessInput.value = ''
             }
