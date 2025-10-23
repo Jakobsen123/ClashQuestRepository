@@ -11,8 +11,8 @@ const MaxTries = 3
 const wait = 2000
 
 let Characters = [
-    "a","b","c","d","e","f","g","h","i","j","k","l","m",
-    "n","o","p","q","r","s","t","u","v","w","x","y","z"
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+    "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
 ]
 
 const imgs = 'src/img/cards'
@@ -42,12 +42,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         Card = cards[cardname];
         BlurImg.src = Card.img;
 
+        GuessInput.addEventListener('keyup', () => {
+            if (!GuessInput.value) {
+                Suggestions.style.display = 'none'
+            }
+            else if (GuessInput.value) {
+                Suggestions.style.display = 'grid'
+            }
+        })
+
         GuessInput.addEventListener('keyup', (event) => {
- 
             if (event.key === 'Enter') {
                 const gues = GuessInput.value.trim().toLowerCase();
                 if (gues === cardname.toLowerCase()) {
                     HintArea.innerText = 'Correct!';
+                    Suggestions.style.display = 'none'
                     HintArea.style.color = 'Green';
                     BlurImg.style.filter = 'blur(0px)';
                     setTimeout(() => window.location.reload(), wait);
@@ -58,20 +67,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     if (attempt <= 0) {
                         HintArea.style.color = 'Red';
+                        Suggestions.style.display = 'none'
                         HintArea.innerText = `You failed! Correct was ${cardname}`;
                         BlurImg.style.filter = 'blur(0px)';
                         setTimeout(() => window.location.reload(), wait);
                     }
                 }
                 GuessInput.value = '';
-                Suggestions.innerHTML = ''; 
+                Suggestions.innerHTML = '';
             }
 
             else if (Characters.includes(event.key.toLowerCase())) {
                 const searchFor = GuessInput.value.trim().toLowerCase();
                 const matchKeys = Object.keys(cards).filter(key => key.toLowerCase().startsWith(searchFor));
 
-                Suggestions.innerHTML = ''; 
+                Suggestions.innerHTML = '';
 
                 matchKeys.forEach(match => {
                     const newsug = baseSug.cloneNode(true);
@@ -81,11 +91,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     SugImg.src = cards[match].img;
                     SugTitle.innerText = match;
+                    newsug.addEventListener('click', () => {
+                        GuessInput.value = match
+                    })
 
                     Suggestions.appendChild(newsug);
                 });
             }
-        }); 
+        });
 
         HintBtn.addEventListener('click', () => {
             HintArea.innerText = `HINT: ${Card.hint}`;
