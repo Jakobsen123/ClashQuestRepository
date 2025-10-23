@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         for (let btn of HoverButton) {
             btn.addEventListener('mouseenter', () => {
                 const h3 = btn.getElementsByTagName('h3')[0]
-                gameDesc.innerText = `Guess the card based off ${h3.innerText.toLowerCase()}`
+                gameDesc.innerText = `Clash Quest: ${h3.innerText.toLowerCase()}`
             })
             btn.addEventListener('mouseleave', () => {
                 const h3 = btn.getElementsByTagName('h3')[0]
