@@ -8,30 +8,29 @@ const rarities = [
 ]
 
 const MaxTries = 3
-
 const wait = 2000
 
-
+let Characters = [
+    "a","b","c","d","e","f","g","h","i","j","k","l","m",
+    "n","o","p","q","r","s","t","u","v","w","x","y","z"
+]
 
 const imgs = 'src/img/cards'
-
 const MainImg = document.querySelector('#MainImg')
-
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", async () => {
     if (window.location.pathname.endsWith('GameSite.html')) {
 
         const response = await fetch('./src/cards.json')
         cards = await response.json()
+
         let Card = null
         const BlurImg = document.querySelector('#BlurImg');
         const GuessInput = document.querySelector('#GuessInput');
         const HintBtn = document.querySelector('#HintBtn');
         const HintArea = document.querySelector('#HintArea');
+        const Suggestions = document.querySelector('#SugContainer')
+        const baseSug = document.querySelector('#baseSug')
 
         const maxBlur = 20
         let currentblur = 20
@@ -40,54 +39,69 @@ document.addEventListener("DOMContentLoaded", async () => {
         const Keys = Object.keys(cards);
         const RandIt = Math.floor(Math.random() * Keys.length);
         const cardname = Keys[RandIt];
-        Card = cards[Keys[RandIt]];
+        Card = cards[cardname];
         BlurImg.src = Card.img;
+
         GuessInput.addEventListener('keyup', (event) => {
-            if (event.key == 'Enter') {
-                const gues = GuessInput.value.toLowerCase()
-                if (gues == cardname.toLowerCase()) {
-                    console.log('Correct!');
-                    HintArea.innerText = 'Correct!'
-                    HintArea.style.color = 'Green'
-                    BlurImg.style.filter = 'blur(0px)'
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, wait);
-                }
-                else {
-                    console.log('incorrect')
-                    BlurImg.style.filter = `blur(${currentblur - maxBlur / MaxTries}px)`
-                    attempt -= 1
-                    currentblur -= 5
-                    if (attempt == 0) {
-                        HintArea.style.color = 'Red'
-                        HintArea.innerText = `You failed! Correct was ${cardname}`
-                        BlurImg.style.filter = 'blur(0px)'
-                        setTimeout(() => {
-                            window.location.reload()
-                        }, wait);
+ 
+            if (event.key === 'Enter') {
+                const gues = GuessInput.value.trim().toLowerCase();
+                if (gues === cardname.toLowerCase()) {
+                    HintArea.innerText = 'Correct!';
+                    HintArea.style.color = 'Green';
+                    BlurImg.style.filter = 'blur(0px)';
+                    setTimeout(() => window.location.reload(), wait);
+                } else {
+                    attempt -= 1;
+                    currentblur -= maxBlur / MaxTries;
+                    BlurImg.style.filter = `blur(${currentblur}px)`;
+
+                    if (attempt <= 0) {
+                        HintArea.style.color = 'Red';
+                        HintArea.innerText = `You failed! Correct was ${cardname}`;
+                        BlurImg.style.filter = 'blur(0px)';
+                        setTimeout(() => window.location.reload(), wait);
                     }
                 }
-                GuessInput.value = ''
+                GuessInput.value = '';
+                Suggestions.innerHTML = ''; 
             }
-        })
+
+            else if (Characters.includes(event.key.toLowerCase())) {
+                const searchFor = GuessInput.value.trim().toLowerCase();
+                const matchKeys = Object.keys(cards).filter(key => key.toLowerCase().startsWith(searchFor));
+
+                Suggestions.innerHTML = ''; 
+
+                matchKeys.forEach(match => {
+                    const newsug = baseSug.cloneNode(true);
+                    newsug.style.display = 'flex'; // make it visible
+                    const SugImg = newsug.querySelector('#SugImg');
+                    const SugTitle = newsug.querySelector('#SugTitle');
+
+                    SugImg.src = cards[match].img;
+                    SugTitle.innerText = match;
+
+                    Suggestions.appendChild(newsug);
+                });
+            }
+        }); 
+
         HintBtn.addEventListener('click', () => {
-            HintArea.innerText = `HINT: ${Card.hint}`
-        })
-    }
-    else if (window.location.pathname.endsWith('index.html')) {
+            HintArea.innerText = `HINT: ${Card.hint}`;
+        });
+
+    } else if (window.location.pathname.endsWith('index.html')) {
         const gameDesc = document.querySelector('#gameDescription')
         const HoverButton = document.getElementsByClassName('HoverButton')
         for (let btn of HoverButton) {
             btn.addEventListener('mouseenter', () => {
                 const h3 = btn.getElementsByTagName('h3')[0]
                 gameDesc.innerText = `Guess the card by: ${h3.innerText.toLowerCase()}`
-            })
+            });
             btn.addEventListener('mouseleave', () => {
-                const h3 = btn.getElementsByTagName('h3')[0]
                 gameDesc.innerText = ''
-            })
+            });
         }
     }
-})
-
+});
