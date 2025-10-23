@@ -21,7 +21,7 @@ const cards = {
     'Arrows': { rarity: rarities[1], hint: 'A cheap spell that clears swarms of troops.', img: `${imgs}/arrows.png` },
     'Zap': { rarity: rarities[1], hint: 'A quick spell that stuns and damages.', img: `${imgs}/zap.png` },
     'Valkyrie': { rarity: rarities[2], hint: 'A melee fighter with a spinning attack that hits all nearby enemies.', img: `${imgs}/valkyrie.png` },
-    'Mini P.E.K.K.A': { rarity: rarities[2], hint: 'A smaller but fast version of P.E.K.K.A that deals heavy single-target damage.', img: `${imgs}/mini-pekka.png` },
+    'Mini PEKKA': { rarity: rarities[2], hint: 'A smaller but fast version of P.E.K.K.A that deals heavy single-target damage.', img: `${imgs}/mini-pekka.png` },
     'Mega Minion': { rarity: rarities[2], hint: 'A flying unit that deals moderate damage.', img: `${imgs}/mega-minion.png` },
     'Musketeer': { rarity: rarities[2], hint: 'A long-range shooter that targets both air and ground units.', img: `${imgs}/musketeer.png` },
     'PEKKA': { rarity: rarities[3], hint: 'A heavily armored melee unit with high damage.', img: `${imgs}/pekka.png` },
@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.log('Correct!');
                     HintArea.innerText = 'Correct!'
                     HintArea.style.color = 'Green'
+                    BlurImg.style.filter = 'blur(0px)'
                     setTimeout(() => {
                         window.location.reload();
                     }, 1000);
@@ -93,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (attempt == 0) {
                         HintArea.style.color = 'Red'
                         HintArea.innerText = `You failed! Correct was ${cardname}`
+                        BlurImg.style.filter = 'blur(0px)'
                         setTimeout(() => {
                             window.location.reload()
                         }, 1000);
