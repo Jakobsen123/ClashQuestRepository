@@ -45,6 +45,18 @@ body::before {
     border-color: white;
     border-radius: 10px;
     margin-top: 20px;
+    font-size: medium;
+    color: white;
+    font-family: ClashFont;
+}
+
+.HoverBtn {
+    transition: 0.3s ease;
+    
+}
+
+.HoverBtn:hover {
+    scale: 1.2;
 }
 
 #HintBtn {
