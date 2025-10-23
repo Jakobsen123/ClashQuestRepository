@@ -16,6 +16,7 @@ h1,h2,h3,h4,h5,h6 {
 .HoverButton:hover{
     scale: 1.2;
     background-color: gold;
+    box-shadow: 0 0 2rem gold;
 }
 
 .HoverButton {
