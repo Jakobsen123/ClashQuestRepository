@@ -29,13 +29,35 @@ body::before {
     transition: 0.3s;
 }
 
+#BlurImg {
+    filter: blur(20px);
+}
 
 #logo:hover {
     scale: 1.05;
 }
 
+#GuessInput {
+    width: 300px;
+    height: 50px;
+    background-color: rgba(1, 1, 1, 0.3);
+    border-style: solid;
+    border-color: white;
+    border-radius: 10px;
+    margin-top: 20px;
+}
 
-h1 {
+#HintBtn {
+    background-color: rgba(1, 1, 1, 0.3);
+    border-style: solid;
+    border-color: white;
+    width: 150px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+h1, h2, h3{
     color: white;
+    font-family: ClashFont;
 }
 
