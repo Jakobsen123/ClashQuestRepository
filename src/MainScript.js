@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     SugTitle.innerText = match;
                     newsug.addEventListener('click', () => {
                         GuessInput.value = match
+                        Suggestions.style.display = 'none'
                     })
 
                     Suggestions.appendChild(newsug);
