@@ -6,7 +6,7 @@ const rarities = [
     'champion'
 ]
 
-const MaxTries = 5
+const MaxTries = 3
 
 const imgs = 'src/img/cards'
 
@@ -53,9 +53,27 @@ const cards = {
     'Skeleton King': { rarity: rarities[4], hint: 'A Champion that summons skeletons upon death.', img: `${imgs}/skeleton-king.png` },
 };
 
+function getRandomCard(img,card) {
+    const Keys = Object.keys(cards);
+    const RandIt = Math.floor(Math.random() * Keys.length);
+    card = cards[Keys[RandIt]];
+    img.src = card.img;
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-    const CardKeys = Object.keys(cards)
-    const randint = Math.floor(Math.random() * CardKeys.length)
-    MainImg.src = cards[CardKeys[randint]].img
-})
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (window.location.pathname.endsWith('GameSite.html')) {
+        let card = null
+
+        const BlurImg = document.querySelector('#BlurImg');
+        const GuessInput = document.querySelector('#GuessInput');
+        const HintBtn = document.querySelector('#HintBtn');
+        const HintArea = document.querySelector('#HintArea');
+        getRandomCard(BlurImg,card);
+        GuessInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter' && GuessInput.value.toLowerCase() == card) {
+                console.log('Correct!');
+            }
+        })
+    }
+});
