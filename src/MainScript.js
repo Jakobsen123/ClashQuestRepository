@@ -24,6 +24,7 @@ const MainImg = document.querySelector('#MainImg')
 
 document.addEventListener("DOMContentLoaded", async () => {
     if (window.location.pathname.endsWith('GameSite.html')) {
+
         const response = await fetch('./src/cards.json')
         cards = await response.json()
         let Card = null
@@ -73,6 +74,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         HintBtn.addEventListener('click', () => {
             HintArea.innerText = `HINT: ${Card.hint}`
         })
+    }
+    else if (window.location.pathname.endsWith('index.html')) {
+        const gameDesc = document.querySelector('#gameDescription')
+        const HoverButton = document.getElementsByClassName('HoverButton')
+        for (let btn of HoverButton) {
+            btn.addEventListener('mouseenter', () => {
+                const h3 = btn.getElementsByTagName('h3')[0]
+                gameDesc.innerText = `Guess the card based off ${h3.innerText.toLowerCase()}`
+            })
+            btn.addEventListener('mouseleave', () => {
+                const h3 = btn.getElementsByTagName('h3')[0]
+                gameDesc.innerText = ''
+            })
+        }
     }
 })
 
