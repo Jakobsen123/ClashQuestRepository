@@ -1,5 +1,5 @@
 {
-  "Knight": { "rarity": "common", "hint": "A brave melee fighter with decent hp", "img": "src/img/cards/knight.png" },
+  "Knight": { "rarity": "common", "hint": "A brave melee fighter with decent hp", "img": "src/img/cards/knight.png", "emojis": "👨,🗡️,🛡️" },
   "Goblins": { "rarity": "common", "hint": "Three to four fast creatures armed with daggers.", "img": "src/img/cards/goblins.png" },
   "Archers": { "rarity": "common", "hint": "Two ranged attackers that shoot from a distance.", "img": "src/img/cards/archers.png" },
   "Skeletons": { "rarity": "common", "hint": "Three low-cost, fragile fighters.", "img": "src/img/cards/skeletons.png" },

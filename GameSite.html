@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,28 @@
     <link rel="stylesheet" href="src/GameSiteStyle.css">
     <script type="module" src="src/MainScript.js" defer></script>
 </head>
+
 <body>
     <a href="index.html"><img id="logo" src="src/img/icons/ClashQuestLogo copy.png" alt=""></a>
     <h1>GUESS THE BLURRED CARD!</h1>
 
     <img id="BlurImg" src="src/img/cards/electro-dragon.png" alt="">
     <input autocomplete="off" type="Text" name="" id="GuessInput" placeholder="Guess here!                      ➜">
-    <button class="HoverBtn" id="HintBtn"><h3>HINT</h3></button>
     <div class="Suggestions">
-        <div class="SugItem"></div>
+        <button class="SugItem">
+            <img src="src/img/cards/witch.png" alt="">
+            <h3>Witch</h3>
+        </button>
+        <button class="SugItem">
+            <img src="src/img/cards/witch.png" alt="">
+            <h3>Witch</h3>
+        </button>
     </div>
+    <button class="HoverBtn" id="HintBtn">
+        <h3>HINT</h3>
+    </button>
+
     <h2 id="HintArea"></h2>
 </body>
+
 </html>

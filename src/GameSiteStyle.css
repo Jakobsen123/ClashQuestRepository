@@ -12,15 +12,12 @@ body {
 
 body::before {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: -1;
     width: 100vw;
     height: 100vh;
     background-image: url(img/icons/Unconfirmed\ 868365.crdownload);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
     filter: brightness(75%);
 }
 
@@ -73,3 +70,35 @@ h1, h2, h3{
     font-family: ClashFont;
 }
 
+.SugItem {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 5rem;
+    margin: 0.3rem;
+    border-style: none;
+
+}
+
+.SugItem h3 {
+    color: black;
+    background-color: transparent;
+}
+.SugItem img {
+    width: 4rem;
+}
+.Suggestions {
+    position: absolute;
+    bottom: -9rem;
+    width: 15rem;
+    height: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-auto-flow: row;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 1rem black;
+    overflow-y: scroll;
+    align-items: start;
+}
