@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 Suggestions.style.display = 'grid'
             }
         })
-        Suggestions.addEventListener('input', (evnt)=> {
+        Suggestions.addEventListener('input', (evnt) => {
             if (!evnt.key) {
                 Suggestions.style.display = 'grid'
             }
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 matchKeys.forEach(match => {
                     const newsug = baseSug.cloneNode(true);
-                    newsug.style.display = 'flex'; 
+                    newsug.style.display = 'flex';
                     const SugImg = newsug.querySelector('#SugImg');
                     const SugTitle = newsug.querySelector('#SugTitle');
                     SugImg.src = cards[match].img;
@@ -123,5 +123,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 gameDesc.innerText = ''
             });
         }
+    }
+    else if (window.location.pathname.endsWith('EmojiGameSite.html')) {
+        const Keys = Object.keys(cards);
+        const RandIt = Math.floor(Math.random() * Keys.length);
+        const cardname = Keys[RandIt]
+        const card = cards[cardname]
+        const Emojis = card.emojis
+
+        console.log(`card: ${card}, emoji: ${emojis}`)
     }
 });
