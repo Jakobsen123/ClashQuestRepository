@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClashQuest Emoji-Game</title>
     <link rel="stylesheet" href="src/EmojiGameStyle.css">
     <link rel="icon" type="image/x-icon" href="src/img/icons/ClashQuestLogo copy.png">
-    
+    <script src="src/MainScript.js"></script>
+
 </head>
+
 <body>
     <img id="CQLogoSmall" src="src/img/icons/CQLogoSmall.png" alt="">
     <a href="index.html"><img id="logo" src="src/img/icons/ClashQuestLogo copy.png" alt=""></a>
@@ -20,12 +23,20 @@
         <h2 id="Emoji3">🛡️</h2>
 
     </div>
-    
+    <div class="Suggestions" id="SugContainer">
+        <button id="baseSug" class="SugItem">
+            <img id="SugImg" src="src/img/cards/witch.png" alt="">
+            <h3 id="SugTitle">Witch</h3>
+        </button>
+    </div>
 
     <input autocomplete="off" type="Text" name="" id="GuessInput" placeholder="Guess here!                      ➜">
-    <button class="HoverBtn" id="HintBtn"><h3>HINT</h3></button>
+    <button class="HoverBtn" id="HintBtn">
+        <h3 id="hint">HINT</h3>
+    </button>
 
 
     <h2 id="HintArea"></h2>
 </body>
+
 </html>
