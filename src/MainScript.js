@@ -50,7 +50,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 Suggestions.style.display = 'grid'
             }
         })
-
+        Suggestions.addEventListener('input', (evnt)=> {
+            if (!evnt.key) {
+                Suggestions.style.display = 'grid'
+            }
+            else {
+                Suggestions.style.display = 'none'
+            }
+        })
         GuessInput.addEventListener('keyup', (event) => {
             if (event.key === 'Enter') {
                 const gues = GuessInput.value.trim().toLowerCase();
@@ -61,10 +68,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                     BlurImg.style.filter = 'blur(0px)';
                     setTimeout(() => window.location.reload(), wait);
                 } else {
+                    Suggestions.style.display = 'none'
                     attempt -= 1;
                     currentblur -= maxBlur / MaxTries;
                     BlurImg.style.filter = `blur(${currentblur}px)`;
-
                     if (attempt <= 0) {
                         HintArea.style.color = 'Red';
                         Suggestions.style.display = 'none'
@@ -85,10 +92,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 matchKeys.forEach(match => {
                     const newsug = baseSug.cloneNode(true);
-                    newsug.style.display = 'flex'; // make it visible
+                    newsug.style.display = 'flex'; 
                     const SugImg = newsug.querySelector('#SugImg');
                     const SugTitle = newsug.querySelector('#SugTitle');
-
                     SugImg.src = cards[match].img;
                     SugTitle.innerText = match;
                     newsug.addEventListener('click', () => {

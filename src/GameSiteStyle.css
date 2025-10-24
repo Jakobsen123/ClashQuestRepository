@@ -27,7 +27,8 @@ body::before {
 }
 
 #BlurImg {
-    filter: blur(25px);
+    image-rendering: pixelated;
+    filter: blur(50px);
 }
 
 #logo:hover {
