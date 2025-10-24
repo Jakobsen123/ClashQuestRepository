@@ -125,6 +125,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
     else if (window.location.pathname.endsWith('EmojiGameSite.html')) {
+        const response = await fetch('./src/cards.json')
+        cards = await response.json()
         const Keys = Object.keys(cards);
         const RandIt = Math.floor(Math.random() * Keys.length);
         const cardname = Keys[RandIt]
